@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="rps-2.css">
+	<title>Rock Paper Scissors</title>
+</head>
+<body>
+
+
+<div id='main'>
+	<div id='title'>Rock Paper Scissors</div>
+
+	<div id="game">
+		<p id="wins"></p>
+		<p id="loses"></p>
+		<p id="ties"></p>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+
+// - User types in r, p or s
+// - Computer chooses a random item
+
+// - If user wins one, then add one to score; else add one to losses
+
+// - If Player1 = scissors; Computer = rock; Computer wins
+// - If Player1 = scissors; Computer = paper; Player1 wins
+// - If Player1 = scissors; Computer = scissors; Tie
+
+// - If Player1 = paper; Computer = rock; Player1 wins
+// - If Player1 = paper; Computer = paper; Tie
+// - If Player1 = paper; Computer = scissors; Computer wins
+
+// - If Player1 = rock; Computer = rock; Tie
+// - If Player1 = rock; Computer = paper; Computer wins
+// - If Player1 = rock; Computer = scissors; Player1 wins
+
+// r = 82
+// p = 80
+// s = 83
+
+// Create an array that lists out all of the options
+var options = ['r','p','s'];
+	var wins = 0;
+	var losses = 0;
+	var ties = 0;
+
+// Captures Key Clicks
+document.onkeyup = function(event) {
+
+	// Determines which exact key was selected. Make it lowercase
+	var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+
+	// Alerts with user guess
+	alert('User: '+ userGuess);
+
+	// Create code to randomly choose one of the three options (Computer) 
+	var computerGuess = options[Math.floor(Math.random()*options.length)];
+
+	// Alerts with Computer guess
+	alert('Computer: ' + computerGuess);
+
+	// var outputStr = '<p>' + wins + '</p>';
+	// var output = document.getElementByIDName('output');
+	// outputInnerHTML = outputStr;
+
+	if (event.keyCode == '82' && computerGuess == 'r') {
+		ties++;
+		console.log('Tie');
+	} else if (event.keyCode == '82' && computerGuess == 'p') {
+		wins++;
+		console.log('Player wins!');
+	} else if (event.keyCode == '82' && computerGuess == 's') {
+		losses++;
+		console.log('Computer wins!');
+	} else if (event.keyCode == '80' && computerGuess == 'r') {
+		wins++;
+		console.log('Player wins!');
+	} else if (event.keyCode == '80' && computerGuess == 'p') {
+		ties++;
+		console.log('Tie!');
+	} else if (event.keyCode == '80' && computerGuess == 's') {
+		losses++;
+		console.log('Computer wins!');
+	} else if (event.keyCode == '83' && computerGuess == 'r') {
+		losses++;
+		console.log('Computer wins!');
+	} else if (event.keyCode == '83' && computerGuess == 'p') {
+		wins++;
+		console.log('Player wins!');
+	} else if (event.keyCode == '83' && computerGuess == 's') {
+		ties++;
+		console.log('Tie!');
+	} else {
+		console.log('Go home. You\'re drunk.');
+
+	}
+
+	html =
+	'Here is your score:'
+	+ "<div id='wins'>" + 'Win: ' + wins +
+	"<div id='losses' >" + 'Losses: ' + losses +
+	"<div id='ties'>" + 'Ties: ' + ties;
+
+	document.querySelector('#game').innerHTML = html;
+
+}
+
+</script>
+</body>
+</html>
